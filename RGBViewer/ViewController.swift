@@ -9,11 +9,89 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var redSlider: UISlider!
+    @IBOutlet weak var greenSlider: UISlider!
+    @IBOutlet weak var blueSlider: UISlider!
+    
+    
+    @IBOutlet weak var redLableText: UILabel!
+    @IBOutlet weak var greenLableText: UILabel!
+    @IBOutlet weak var blueLableTexr: UILabel!
+    
+    
+    @IBOutlet weak var colorViewer: UIView!
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        colorViewer.layer.cornerRadius = 15
+        
+        setSliderValue()
+        setTintColor()
+        setminimumValue()
+        setLableText()
+        
+        }
+    
+    private func setSliderValue() {
+        redSlider.value = 0
+        greenSlider.value = 0
+        blueSlider.value = 0
     }
-
-
+    
+    private func setTintColor() {
+        redSlider.tintColor = .red
+        greenSlider.tintColor = .green
+        blueSlider.tintColor = .blue
+    }
+    
+    private func setminimumValue() {
+        redSlider.minimumValue = 0
+        greenSlider.minimumValue = 0
+        blueSlider.minimumValue = 0
+    }
+    
+    private func setMaximumValue() {
+        redSlider.maximumValue = 1
+        greenSlider.maximumValue = 1
+        blueSlider.maximumValue = 1
+    }
+    
+    private func setLableText() {
+        
+        redLableText.text = "Red: " + roundvalue(for: redSlider.value)
+        greenLableText.text = "Green: " + roundvalue(for: greenSlider.value)
+        blueLableTexr.text = "Blue: " + roundvalue(for: blueSlider.value)
+    
+    }
+    
+    @IBAction func redSegmentedAction() {
+        
+        redLableText.text = "Red: " + roundvalue(for: redSlider.value)
+        mixColorForView()
+    }
+    
+    @IBAction func greenSegmentedAction() {
+        
+        greenLableText.text = "Green: " + roundvalue(for: greenSlider.value)
+        mixColorForView()
+    }
+    
+    @IBAction func blueSegmentedAction() {
+        
+        blueLableTexr.text = "Blue: " + roundvalue(for: blueSlider.value)
+        mixColorForView()
+    }
+    
+    func roundvalue(for value :Float) -> String {
+        String(format: "%.2f", value)
+    }
+    
+    func mixColorForView() {
+        colorViewer.backgroundColor = UIColor(red: CGFloat(Float(redSlider.value)), green: CGFloat(Float(greenSlider.value)), blue: CGFloat(Float(blueSlider.value)), alpha: 1.0)
+        
+    }
+    
 }
 
