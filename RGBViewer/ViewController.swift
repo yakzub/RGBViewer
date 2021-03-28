@@ -98,8 +98,11 @@ class ViewController: UIViewController {
     }
     
     private func mixColorForView() {
-        colorViewer.backgroundColor = UIColor(red: CGFloat(Float(redSlider.value)), green: CGFloat(Float(greenSlider.value)), blue: CGFloat(Float(blueSlider.value)), alpha: 1.0)
-        
+        colorViewer.backgroundColor = UIColor(
+            red: CGFloat(redSlider.value),
+            green: CGFloat(greenSlider.value),
+            blue: CGFloat(blueSlider.value),
+            alpha: 1.0)
     }
     
 }
