@@ -13,26 +13,35 @@ class ViewController: UIViewController {
     @IBOutlet weak var greenSlider: UISlider!
     @IBOutlet weak var blueSlider: UISlider!
     
-    
     @IBOutlet weak var redLableText: UILabel!
     @IBOutlet weak var greenLableText: UILabel!
     @IBOutlet weak var blueLableTexr: UILabel!
     
+    @IBOutlet weak var redColorNameLable: UILabel!
+    @IBOutlet weak var greenColorNameLable: UILabel!
+    @IBOutlet weak var blueColorNameLable: UILabel!
     
     @IBOutlet weak var colorViewer: UIView!
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
         
         colorViewer.layer.cornerRadius = 15
         
+        setColorNames()
         setSliderValue()
         setTintColor()
         setminimumValue()
         setLableText()
+        mixColorForView()
         
         }
+    
+    private func setColorNames() {
+        redColorNameLable.text = "Red: "
+        greenColorNameLable.text = "Green: "
+        blueColorNameLable.text = "Blue: "
+    }
     
     private func setSliderValue() {
         redSlider.value = 0
@@ -60,35 +69,35 @@ class ViewController: UIViewController {
     
     private func setLableText() {
         
-        redLableText.text = "Red: " + roundvalue(for: redSlider.value)
-        greenLableText.text = "Green: " + roundvalue(for: greenSlider.value)
-        blueLableTexr.text = "Blue: " + roundvalue(for: blueSlider.value)
+        redLableText.text = roundvalue(for: redSlider.value)
+        greenLableText.text = roundvalue(for: greenSlider.value)
+        blueLableTexr.text = roundvalue(for: blueSlider.value)
     
     }
     
     @IBAction func redSegmentedAction() {
         
-        redLableText.text = "Red: " + roundvalue(for: redSlider.value)
+        redLableText.text = roundvalue(for: redSlider.value)
         mixColorForView()
     }
     
     @IBAction func greenSegmentedAction() {
         
-        greenLableText.text = "Green: " + roundvalue(for: greenSlider.value)
+        greenLableText.text = roundvalue(for: greenSlider.value)
         mixColorForView()
     }
     
     @IBAction func blueSegmentedAction() {
         
-        blueLableTexr.text = "Blue: " + roundvalue(for: blueSlider.value)
+        blueLableTexr.text = roundvalue(for: blueSlider.value)
         mixColorForView()
     }
     
-    func roundvalue(for value :Float) -> String {
+    private func roundvalue(for value :Float) -> String {
         String(format: "%.2f", value)
     }
     
-    func mixColorForView() {
+    private func mixColorForView() {
         colorViewer.backgroundColor = UIColor(red: CGFloat(Float(redSlider.value)), green: CGFloat(Float(greenSlider.value)), blue: CGFloat(Float(blueSlider.value)), alpha: 1.0)
         
     }
